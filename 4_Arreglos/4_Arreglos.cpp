@@ -1,59 +1,74 @@
 #include <iostream>
 #include <Windows.h>
 #include <iomanip>
+#include "Array.h"
 
 int main()
 {
-    //Decirle a windows que queremos que la consola use UTF8
+    //decirle  windows que queremos que la consola use UTF-8
     SetConsoleOutputCP(CP_UTF8);
-    std::cout << "El niño puño 👊 y el pingüino 🐧 y un hoyo negro 🌌\n";
-    std::cout << "  Esto es una arroba \x40" << "\n";
-    std::cout << "  Esto es un kanji \xE9\x9B\xBB" << "\n";
-    std::cout << "  Esro es un emoji \xF0\x9F\x92\x80" << "\n";
+    std::cout << "El niño puño 👊 y el pingüino 🐧 \n";
+    std::cout << "Esto es una arroba \x40" << "\n";
+    std::cout << "Esto es un kanji \xE9\x9B\xBB" << "\n";
+    std::cout << "Esto es una emoji \xF0\x9F\x92\x80" << "\n";
 
     //imprimir un arreglo de emojis
-    std::cout << "Emojis del F0F9200 al F09F92FF\n";
+    std::cout << "Emojis del F09F9200 al F09F92FF\n";
     char emojibytes[5] = "\xF0\x9F\x92\x00";
     std::cout << emojibytes << "\n";
 
-    //Escribir los bytes de la cadena
-    for (char c = 0; c < 5; c++)
+    //escribir los bytes de la cadena
+    for (int c = 0; c < 5; c++)
     {
-        std::cout << 
-            std::hex << 
+        std::cout <<
+            std::hex <<
             std::setw(2) <<
             std::setfill('0') <<
-            static_cast<int>( static_cast<unsigned char > (emojibytes[c]));
+            static_cast<int>(static_cast<unsigned char>(emojibytes[c]));
     }
     std::cout << std::endl;
 
-    //Imprimir valores exadecimales del emoji
-    for (int i = 0; i <= 0xF; i++) //oxF es 16
+    //imprimir valores exadecimales del emoji
+    for (int i = 0; i <= 0xF; i++) //0xF es 16
     {
         for (int j = 0; j <= 0xF; j++)
-        
+        {
             for (int c = 0; c < 5; c++)
             {
-                std::cout << 
-                    std::hex << 
-                    std::setw(2) << 
-                    std::setfill('0') << static_cast<int>(static_cast<unsigned char> (emojibytes[c]));
+                std::cout <<
+                    std::hex <<
+                    std::setw(2) <<
+                    std::setfill('0') <<
+                    static_cast<int>(static_cast<unsigned char>(emojibytes[c]));
             }
-          std::cout << emojibytes << " ";
-          emojibytes[4] + 1;
+            std::cout << " ";
+            emojibytes[3] += 1;
         }
         std::cout << "\n";
     }
-//Imprimir emoji
-for (int i = 0; i <= 0xF; i++) //oxF es 16
-{
-    for (int j = 0; j <= 0xF; j++)
+
+    //imprimir emoji
+    for (int i = 0; i <= 0xF; i++) //0xF es 16
     {
-        std::cout << emojibytes << " ";
-        emojibytes[4] + 1
+        for (int j = 0; j <= 0xF; j++)
+        {
+            std::cout << emojibytes << " ";
+            emojibytes[3] += 1;
+        }
+        std::cout << "\n";
     }
-std::cout << "\n";
-}
+
+    //Seccion: prueba de clase Array
+    Array* arreglodegatos = new Array(60);
+
+    std::cout << "size of uint 32" << sizeof(uint32) << "\n";
+    puts("Arreglo de uint32");
+
+    uint32 a = (uint32)"\xf0\x9f\x90\x88";  //Cat face 0xF0 0x9F 0x9F 0x88
+    std::cout << a << "\n";
+
+    for (int i = 0; i < arreglodegatos->Size(); i++)
+    {
+        std::cout << arreglodegatos->Get(i) << "\n";
     }
-    return 0;
 }
