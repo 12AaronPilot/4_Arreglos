@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <iomanip>
 #include "Array.h"
+#include "GenericArray.h"
 
 int main()
 {
@@ -12,6 +13,7 @@ int main()
     std::cout << "Esto es un kanji \xE9\x9B\xBB" << "\n";
     std::cout << "Esto es una emoji \xF0\x9F\x92\x80" << "\n";
 
+    /*
     //imprimir un arreglo de emojis
     std::cout << "Emojis del F09F9200 al F09F92FF\n";
     char emojibytes[5] = "\xF0\x9F\x92\x00";
@@ -59,16 +61,26 @@ int main()
     }
 
     //Seccion: prueba de clase Array
-    Array* arreglodegatos = new Array(60);
+    Array* arreglodegatos = new Array(9);
 
     std::cout << "size of uint 32" << sizeof(uint32) << "\n";
     puts("Arreglo de uint32");
 
-    uint32 a = (uint32)"\xf0\x9f\x90\x88";  //Cat face 0xF0 0x9F 0x9F 0x88
-    std::cout << a << "\n";
+    const char* gato = "\xf0\x9f\x90\x88";
+    uint32 res;
+    std::memcpy(&res, gato, 4);
+    std::cout << "valor en bytes: " << res << "\n";
 
     for (int i = 0; i < arreglodegatos->Size(); i++)
     {
         std::cout << arreglodegatos->Get(i) << "\n";
     }
+}*/
+
+    GenericArray<int> *enteros = new GenericArray<int>(10);
+
+    (*enteros)[0] = 12;
+    (*enteros)[1] = 99;
+    enteros->print
+    return 0;
 }

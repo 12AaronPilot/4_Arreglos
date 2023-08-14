@@ -27,6 +27,7 @@ public:
 	}
 
 	//Declarar los metodos get set
+	uint32 Set(size_t index, const char* bytes);
 	uint32 Get(size_t index);
 	void Set(size_t index, uint32 newvalue);
 
@@ -35,6 +36,8 @@ public:
 		return size;
 	}
 
+	void Clear();
 
 
 };
+ 
